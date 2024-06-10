@@ -33,6 +33,11 @@ data "aws_iam_instance_profile" "IAM-Role" {
   name = "ec2-SSM-Sandesh"
 }
 
+resource "aws_autoscaling_attachment" "ASG-Sandesh-Attachment" {
+  autoscaling_group_name = aws_autoscaling_group.ASG-Sandesh.name
+  lb_target_group_arn = aws_lb_target_group.TG-tf.arn
+}
+
 resource "aws_autoscaling_group" "ASG-Sandesh" {
   name                = "ASG-Sandesh"
   desired_capacity    = 2
@@ -41,7 +46,7 @@ resource "aws_autoscaling_group" "ASG-Sandesh" {
   force_delete        = true
   target_group_arns   = [aws_lb_target_group.TG-tf.arn]
   health_check_type   = "EC2"
-  vpc_zone_identifier = aws_subnet.subnets[*].id
+  vpc_zone_identifier = [aws_subnet.subnets["public-subnet-1a"].id, aws_subnet.subnets["public-subnet-1b"].id]
 
   launch_template {
     id      = aws_launch_template.ec2_template.id

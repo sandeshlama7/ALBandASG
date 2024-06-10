@@ -74,10 +74,10 @@ resource "aws_route_table" "public-route-table" {
 
 ##ROUTE TABLE ASSOCIATION TO SUBNETS
 resource "aws_route_table_association" "public_subnet_association1" {
-  subnet_id      = aws_subnet.subnets[*].id
+  subnet_id      = aws_subnet.subnets["public-subnet-1a"].id
   route_table_id = aws_route_table.public-route-table.id
 }
-# resource "aws_route_table_association" "public_subnet_association2" {
-#   subnet_id      = aws_subnet.subnets["public-subnet-1b"].id
-#   route_table_id = aws_route_table.public-route-table.id
-# }
+resource "aws_route_table_association" "public_subnet_association2" {
+  subnet_id      = aws_subnet.subnets["public-subnet-1b"].id
+  route_table_id = aws_route_table.public-route-table.id
+}

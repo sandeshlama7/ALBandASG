@@ -23,7 +23,7 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = aws_subnet.subnets[*].id
+  subnets            = [aws_subnet.subnets["public-subnet-1a"].id, aws_subnet.subnets["public-subnet-1b"].id]
 
   tags = {
     Name = "ALB-tf-Sandesh"
