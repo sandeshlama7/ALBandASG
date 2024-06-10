@@ -1,8 +1,8 @@
 resource "aws_launch_template" "ec2_template" {
-  name_prefix            = "LT-EC2-"
-  image_id               = local.ami
+  name_prefix = "LT-EC2-"
+  image_id    = local.ami
   # key_name               = "Key.Sandesh.pem"
-  instance_type          = local.instance_type
+  instance_type = local.instance_type
   # vpc_security_group_ids = [aws_security_group.sg-vpc.id]
 
   iam_instance_profile {

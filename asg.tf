@@ -35,7 +35,7 @@ data "aws_iam_instance_profile" "IAM-Role" {
 
 resource "aws_autoscaling_attachment" "ASG-Sandesh-Attachment" {
   autoscaling_group_name = aws_autoscaling_group.ASG-Sandesh.name
-  lb_target_group_arn = aws_lb_target_group.TG-tf.arn
+  lb_target_group_arn    = aws_lb_target_group.TG-tf.arn
 }
 
 resource "aws_autoscaling_group" "ASG-Sandesh" {
